@@ -42,13 +42,6 @@ public class BaseInitData {
     @Bean
     @Order(2)
     public ApplicationRunner applicationRunner2() {
-//        return args -> {
-//
-//            Thread.sleep(1000);
-//            //Post post = postService.findById(1L).get();
-//            //postService.modify(post, "new title", "new body");
-//            postService.modify2(1L, "new title", "new body");
-//        };
         return new ApplicationRunner() {
             @Override
             @Transactional
@@ -56,6 +49,27 @@ public class BaseInitData {
                 Post post = postService.findById(1L).get();
                 Thread.sleep(1000);
                 postService.modify(post, "new title1212", "new body1212");
+            }
+        };
+    }
+
+    @Bean
+    @Order(3)
+    public ApplicationRunner applicationRunner3() {
+        return new ApplicationRunner() {
+            @Override
+            @Transactional
+            public void run(ApplicationArguments args) throws Exception {
+                Post p1 = postService.findById(1L).get();
+                Post p2 = postService.findById(2L).get();
+                System.out.println("====== p1 삭제 ======");
+                postService.delete(p1);
+                System.out.println("====== p1 삭제 완료 ======");
+                System.out.println("====== p2 삭제 ======");
+                postService.delete(p2);
+                System.out.println("====== p2 삭제 완료 ======");
+//                postService.deleteById(1L);
+//                postService.deleteById(2L);
             }
         };
     }

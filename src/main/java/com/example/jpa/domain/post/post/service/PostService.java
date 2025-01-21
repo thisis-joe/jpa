@@ -42,4 +42,11 @@ public class PostService {
     public Optional<Post> findById(long id) {
         return postRepository.findById(id);
     }
+
+    public void delete(Post post) {
+        postRepository.delete(post);
+    }
+    public void deleteById(long id) {
+        postRepository.deleteById(id);
+    }
 }
