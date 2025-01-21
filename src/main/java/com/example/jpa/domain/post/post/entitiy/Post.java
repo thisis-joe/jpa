@@ -1,13 +1,17 @@
 package com.example.jpa.domain.post.post.entitiy;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 @Entity
 @Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Post {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
