@@ -1,7 +1,7 @@
 package com.example.jpa.domain.post.post.service;
 
 
-import com.example.jpa.domain.post.post.entitiy.Post;
+import com.example.jpa.domain.post.post.entity.Post;
 import com.example.jpa.domain.post.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
