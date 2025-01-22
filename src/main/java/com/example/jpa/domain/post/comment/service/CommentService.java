@@ -14,4 +14,8 @@ public class CommentService {
                 .build();
         return commentRepository.save(comment);
     }
+
+    public long count() {
+        return commentRepository.count();
+    }
 }
