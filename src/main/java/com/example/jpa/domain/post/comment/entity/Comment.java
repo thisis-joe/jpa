@@ -29,9 +29,7 @@ public class Comment {
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedDate;
 
-
-    //private long postId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
     @Column(columnDefinition = "TEXT")
