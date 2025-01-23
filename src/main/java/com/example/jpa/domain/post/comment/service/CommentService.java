@@ -9,7 +9,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     public Comment write(long postId, String body) {
         Comment comment = Comment.builder()
-                .postId(postId)
+                //.postId(postId)
                 .body(body)
                 .build();
         return commentRepository.save(comment);
