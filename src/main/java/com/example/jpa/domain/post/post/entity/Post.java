@@ -39,7 +39,8 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true) // EAGER, LAZY
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    // EAGER, LAZY
     @Builder.Default// mappedBy를 사용하지 않은 쪽이 주인
     private List<Comment> comments = new ArrayList<>();
 
@@ -47,13 +48,23 @@ public class Post {
         comments.add(c1);
         c1.setPost(this);
     }
+
     public void removeComment(Comment c1) {
         comments.remove(c1);
     }
+
     public void removeComment(long id) {
         Optional<Comment> opComment = comments.stream()
                 .filter(com -> com.getId() == id)
                 .findFirst();
         opComment.ifPresent(comment -> comments.remove(comment));
+    }
+
+    public void removeAllComments() {
+        comments
+                .forEach(comment -> {
+                    comment.setPost(null);
+                });
+        comments.clear();
     }
 }
