@@ -38,13 +38,16 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-
-    @OneToMany(mappedBy="post",cascade = CascadeType.ALL)
-    @Builder.Default
+    @OneToMany(mappedBy = "post") // mappedBy를 사용하지 않은 쪽이 주인
+    @Builder.Default// mappedBy를 사용하지 않은 쪽이 주인
     private List<Comment> comments = new ArrayList<>();
 
-    public void addComment(Comment comment) {
-        comments.add(comment);
-
-    }
+//    @OneToMany(mappedBy="post",cascade = CascadeType.ALL)
+//    @Builder.Default
+//    private List<Comment> comments = new ArrayList<>();
+//
+//    public void addComment(Comment comment) {
+//        comments.add(comment);
+//
+//    }
 }
