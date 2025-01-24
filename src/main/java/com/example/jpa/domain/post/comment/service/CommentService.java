@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository commentRepository;
+
     public Comment write(Post post, String body) {
         Comment comment = Comment.builder()
                 .post(post)
@@ -26,5 +27,9 @@ public class CommentService {
 
     public Optional<Comment> findById(long id) {
         return commentRepository.findById(id);
+    }
+
+    public Comment save(Comment c1) {
+        return commentRepository.save(c1);
     }
 }

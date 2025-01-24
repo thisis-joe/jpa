@@ -22,12 +22,20 @@ public class BaseInitData {
     @Autowired
     @Lazy
     private BaseInitData self; // 프록시
-
+    @Transactional
+    public void work2() {
+        Post post = postService.findById(1L).get();
+//        Comment comment = commentService.findById(1L).get();
+        int count = post.getComments().size(); //3개
+        System.out.println(count);
+        post.removeComment(1L);
+    }
     @Bean
     @Order(1)
     public ApplicationRunner applicationRunner() {
         return args -> {
             self.work1();
+            self.work2();
         };
     }
     @Transactional
@@ -42,9 +50,8 @@ public class BaseInitData {
                 .body("comment1")
                 .build();
 
-        p1.getComments().add(c1); // 관계의 주인이 DB 반영을 한다.
-
-        commentService.write(p1, "comment1");
+        c1 = commentService.save(c1);
+        p1.addComment(c1);
 
     }
 }

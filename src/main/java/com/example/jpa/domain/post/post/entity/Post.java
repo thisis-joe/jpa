@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -42,12 +43,15 @@ public class Post {
     @Builder.Default// mappedBy를 사용하지 않은 쪽이 주인
     private List<Comment> comments = new ArrayList<>();
 
-//    @OneToMany(mappedBy="post",cascade = CascadeType.ALL)
-//    @Builder.Default
-//    private List<Comment> comments = new ArrayList<>();
-//
-//    public void addComment(Comment comment) {
-//        comments.add(comment);
-//
-//    }
+    public void addComment(Comment c1) {
+        comments.add(c1);
+        c1.setPost(this);
+    }
+
+    public void removeComment(long id) {
+        Optional<Comment> opComment = comments.stream()
+                .filter(com -> com.getId() == id)
+                .findFirst();
+        opComment.ifPresent(comment -> comments.remove(comment));
+    }
 }
