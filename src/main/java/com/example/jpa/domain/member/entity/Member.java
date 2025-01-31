@@ -1,7 +1,5 @@
-package com.example.jpa.domain.post.comment.entity;
+package com.example.jpa.domain.member.entity;
 
-import com.example.jpa.domain.member.entity.Member;
-import com.example.jpa.domain.post.post.entity.Post;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Comment {
+public class Member {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
     @Setter(AccessLevel.PRIVATE)
@@ -30,12 +29,11 @@ public class Comment {
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    @Column(length = 100, unique = true)
+    private String username;
+    @Column(length = 100)
+    private String password;
+    @Column(length = 100)
+    private String nickname;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Post post;
-
-    @Column(columnDefinition = "TEXT")
-    private String body;
 }
