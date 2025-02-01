@@ -196,7 +196,7 @@ public class PostServiceTest {
     }
 
     @Test
-    @DisplayName("글목록에서 회원 정보 가져오기")
+    @DisplayName("글목록에서 회원 정보 가져오기-> N + 1")
     @Transactional
     void t15() {
         // post에서 member 정보가 필요할 때 방법
