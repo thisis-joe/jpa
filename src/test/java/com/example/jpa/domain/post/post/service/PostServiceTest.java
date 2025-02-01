@@ -37,6 +37,7 @@ public class PostServiceTest {
         postService.write(user1, "title1", "body1");
         postService.write(user1, "title2", "body2");
     }
+
     @Test
     @DisplayName("모든 글 조회")
     @Transactional
