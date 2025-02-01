@@ -55,9 +55,6 @@ public class BaseInitData {
             return;
         }
 
-//        Post p1 = postService.write("title1", "body1");
-//        Post p2 = postService.write("title1", "body2");
-//        Post p3 = postService.write("title1", "body3");
         Member user1 = memberService.findByUsername("user1").get();
         Member user2 = memberService.findByUsername("user2").get();
 
@@ -67,6 +64,7 @@ public class BaseInitData {
 
 
         Comment c1 = Comment.builder()
+                .author(user1)
                 .body("comment1")
                 .build();
 
@@ -74,12 +72,14 @@ public class BaseInitData {
         p1.addComment(c1);
 
         Comment c2 = Comment.builder()
+                .author(user1)
                 .body("comment2")
                 .build();
 
         p1.addComment(c2);
 
         Comment c3 = Comment.builder()
+                .author(user2)
                 .body("comment3")
                 .build();
 

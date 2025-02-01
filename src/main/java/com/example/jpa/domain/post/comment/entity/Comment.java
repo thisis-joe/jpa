@@ -31,7 +31,7 @@ public class Comment {
     private LocalDateTime modifiedDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    private Member author;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;

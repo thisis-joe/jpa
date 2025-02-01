@@ -79,5 +79,8 @@ public class PostService {
     public List<Post> findTop2ByTitleOrderByIdDesc(String title) {
         return postRepository.findTop2ByTitleOrderByIdDesc(title);
     }
+    public List<Post> findByAuthorUsername(String username) {
+        return postRepository.findByAuthorUsername(username);
+    }
 
 }
