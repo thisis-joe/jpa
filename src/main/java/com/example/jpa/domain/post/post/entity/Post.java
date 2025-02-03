@@ -59,6 +59,13 @@ public class Post extends BaseTime {
         comments.clear();
     }
     public void addTag(String name) {
+        Optional<Tag> oldTag = tags.stream()
+                .filter(tag -> tag.getName().equals(name))
+                .findFirst();
+        if (oldTag.isPresent()) {
+            return;
+        }
+
         Tag tag = Tag.builder()
                 .name(name)
                 .post(this)
