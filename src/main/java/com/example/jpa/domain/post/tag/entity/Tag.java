@@ -1,11 +1,11 @@
-package com.example.jpa.domain.post.comment.entity;
+package com.example.jpa.domain.post.tag.entity;
 
-import com.example.jpa.domain.member.entity.Member;
 import com.example.jpa.domain.post.post.entity.Post;
 import com.example.jpa.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @Entity
 @Getter
 @Setter
@@ -13,14 +13,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @NoArgsConstructor
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class Comment extends BaseEntity {
+public class Tag extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member author;
+    @Column(length = 100)
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
 
-    @Column(columnDefinition = "TEXT")
-    private String body;
 }
