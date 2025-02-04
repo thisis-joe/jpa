@@ -8,9 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Entity
 @Getter
@@ -36,7 +34,7 @@ public class Post extends BaseTime {
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @Builder.Default
-    private List<Tag> tags = new ArrayList<>();
+    private Set<Tag> tags = new HashSet<>();
 
     public void addComment(Comment c1) {
         comments.add(c1);
@@ -59,12 +57,12 @@ public class Post extends BaseTime {
         comments.clear();
     }
     public void addTag(String name) {
-        Optional<Tag> oldTag = tags.stream()
-                .filter(tag -> tag.getName().equals(name))
-                .findFirst();
-        if (oldTag.isPresent()) {
-            return;
-        }
+//        Optional<Tag> oldTag = tags.stream()
+//                .filter(tag -> tag.getName().equals(name))
+//                .findFirst();
+//        if (oldTag.isPresent()) {
+//            return;
+//        }
 
         Tag tag = Tag.builder()
                 .name(name)
